@@ -17,6 +17,6 @@ def getRoundScore(oppDraw, result):
     
     return GAME_RULE_SCORE[result] + myDrawScore
 
-data = pd.read_csv("data/day2.txt", sep=" ", header=None, names=["opponent", "me"])
+data = pd.read_csv("input.txt", sep=" ", header=None, names=["opponent", "me"])
 
 data.apply(lambda row: getRoundScore(row.opponent, row.result), axis=1).agg(sum)

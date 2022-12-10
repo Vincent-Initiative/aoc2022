@@ -1,9 +1,7 @@
 import pandas as pd
 import heapq
 
-filePath = "data/day1"
-
-data = pd.read_table(filePath, header=None, skip_blank_lines=False)
+data = pd.read_table("input.txt", header=None, skip_blank_lines=False)
 
 top3_calories = [0, 0, 0]
 current_calories = 0

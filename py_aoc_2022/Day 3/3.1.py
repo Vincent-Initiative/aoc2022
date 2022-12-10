@@ -25,6 +25,6 @@ def computePriority(c1, c2):
     return getPriorityFromType(commonLetter)
 
 
-data = pd.read_csv("data/day3.txt", sep=" ", header=None, names=["content"])
+data = pd.read_csv("input.txt", sep=" ", header=None, names=["content"])
 
 data.apply(lambda line: computePriority(line.compartment1, line.compartment2), axis=1).agg(sum)
