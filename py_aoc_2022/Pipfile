@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 pandas = "*"
 jupyterlab = "*"
+pep8 = "*"
+pycodestyle = "*"
 
 [dev-packages]
 
