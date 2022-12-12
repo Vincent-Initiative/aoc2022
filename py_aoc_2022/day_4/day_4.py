@@ -27,11 +27,18 @@ def expandDf(data: DataFrame) -> DataFrame:
 
 
 @decorator_timer
-def filterDf(data: DataFrame) -> DataFrame:
+def filterDfPart1(data: DataFrame) -> DataFrame:
     filteredDf: DataFrame = data[((data.elf1_zone_inf >= data.elf2_zone_inf) &
                                   (data.elf1_zone_sup <= data.elf2_zone_sup)) |
                                  ((data.elf2_zone_inf >= data.elf1_zone_inf) &
                                   (data.elf2_zone_sup <= data.elf1_zone_sup))]
+
+    return filteredDf
+
+
+def filterDfPart2(data: DataFrame) -> DataFrame:
+    filteredDf: DataFrame = data[((data.elf1_zone_sup >= data.elf2_zone_inf) &
+                                  (data.elf2_zone_sup >= data.elf1_zone_inf))]
 
     return filteredDf
 
@@ -50,7 +57,7 @@ def filterDfWithQuery(data: DataFrame) -> DataFrame:
 
 def part1(inputDf: DataFrame) -> int:
     expandedDf = expandDf(inputDf)
-    filteredDf, exec_time = filterDf(expandedDf)
+    filteredDf, exec_time = filterDfPart1(expandedDf)
     print(f"not query mode : {exec_time}")
     filteredDfWithQuery, exec_time = filterDfWithQuery(expandedDf)
     print(f"query mode : {exec_time}")
@@ -61,7 +68,10 @@ def part1(inputDf: DataFrame) -> int:
 
 
 def part2(inputDf: DataFrame):
-    result = None
+    expandedDf = expandDf(inputDf)
+    filteredDf = filterDfPart2(expandedDf)
+
+    result = len(filteredDf)
 
     return result
 
